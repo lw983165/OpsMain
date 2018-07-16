@@ -41,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 MainWindow::~MainWindow()
 {
+    /// add for test
     delete ui;
 }
 void MainWindow::timerUpdate(void)
