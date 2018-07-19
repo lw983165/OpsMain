@@ -1069,6 +1069,16 @@
      </size>
     </property>
    </widget>
+   <widget class="QWidget" name="container" native="true">
+    <property name="geometry">
+     <rect>
+      <x>2</x>
+      <y>120</y>
+      <width>1919</width>
+      <height>931</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>textEdit_3</zorder>
    <zorder>textEdit_2</zorder>
    <zorder>textEdit</zorder>
@@ -1120,6 +1130,7 @@
    <zorder>redlineEdit_5</zorder>
    <zorder>textEdit_12</zorder>
    <zorder>pushButton_3</zorder>
+   <zorder>container</zorder>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>

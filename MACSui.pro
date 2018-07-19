@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets svg network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,12 +24,118 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    commands/BringForwardCommand.cpp \
+    commands/BringToFrontCommand.cpp \
+    commands/BulkOrderCommand.cpp \
+    commands/ChangeOrderCommand.cpp \
+    commands/DeleteSelectedCommand.cpp \
+    commands/DrawCommand.cpp \
+    commands/MoveSelectionCommand.cpp \
+    commands/SendBackwardCommand.cpp \
+    commands/SendToBackCommand.cpp \
+    events/ValueChangeEvent.cpp \
+    fileio/FileReaderFactory.cpp \
+    fileio/FileWriterFactory.cpp \
+    fileio/HtJsonFileReader.cpp \
+    fileio/JsonFileReader.cpp \
+    fileio/JsonFileWriter.cpp \
+    fileio/KyJsonFileReader.cpp \
+    fileio/KyJsonFileReaderV2.cpp \
+    shapes/Circle.cpp \
+    shapes/Line.cpp \
+    shapes/Rectangle.cpp \
+    shapes/svg.cpp \
+    shapes/Text.cpp \
+    tools/DrawCircleTool.cpp \
+    tools/DrawLineTool.cpp \
+    tools/DrawRectangleTool.cpp \
+    tools/SelectionTool.cpp \
+    tools/ValueChangeTool.cpp \
+    AbstractGroup.cpp \
+    ActiveSelection.cpp \
+    Canvas.cpp \
+    Command.cpp \
+    CommandStack.cpp \
+    GlobalDrawProperties.cpp \
+    Group.cpp \
+    MainCommandStack.cpp \
+    PropertyColorButton.cpp \
+    PropertySpinBox.cpp \
+    Selection.cpp \
+    Shape.cpp \
+    Tool.cpp \
+    VisualEntity.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    commands/BringForwardCommand.hpp \
+    commands/BringToFrontCommand.hpp \
+    commands/BulkOrderCommand.hpp \
+    commands/ChangeOrderCommand.hpp \
+    commands/ChangePropertyCommand.hpp \
+    commands/ChangePropertyCommandList.hpp \
+    commands/DeleteSelectedCommand.hpp \
+    commands/DrawCommand.hpp \
+    commands/MoveSelectionCommand.hpp \
+    commands/SendBackwardCommand.hpp \
+    commands/SendToBackCommand.hpp \
+    events/eventdef.h \
+    events/ValueChangeEvent.h \
+    fileio/FileReaderFactory.hpp \
+    fileio/FileWriterFactory.hpp \
+    fileio/HtJsonFileReader.h \
+    fileio/JsonFileReader.hpp \
+    fileio/JsonFileWriter.hpp \
+    fileio/KyJsonFileReader.h \
+    fileio/KyJsonFileReaderV2.h \
+    interfaces/IDrawable.hpp \
+    interfaces/IFileReader.hpp \
+    interfaces/IFileWriter.hpp \
+    interfaces/IFillable.hpp \
+    interfaces/IImage.h \
+    interfaces/ilabel.h \
+    interfaces/ILine.hpp \
+    interfaces/ISelectable.hpp \
+    interfaces/ITransformable.hpp \
+    shapes/Circle.hpp \
+    shapes/jsondef.h \
+    shapes/Line.hpp \
+    shapes/Rectangle.hpp \
+    shapes/svg.h \
+    shapes/Text.h \
+    tools/DrawCircleTool.hpp \
+    tools/DrawLineTool.hpp \
+    tools/DrawRectangleTool.hpp \
+    tools/SelectionTool.hpp \
+    tools/ValueChangeTool.h \
+    Command.hpp \
+    AbstractGroup.hpp \
+    ActiveSelection.hpp \
+    CommandStack.hpp \
+    Selection.hpp \
+    Signal.hpp \
+    VisualEntity.hpp \
+    Group.hpp \
+    Shape.hpp \
+    GlobalDrawProperties.hpp \
+    Tool.hpp \
+    Canvas.hpp \
+    MainCommandStack.hpp \
+    MainWindow.hpp \
+    PropertyColorButton.hpp \
+    PropertySpinBox.hpp
 
 FORMS    += mainwindow.ui
+DESTDIR = $$PWD/../build
 
+INCLUDEPATH += \
+    $$PWD \
+    interfaces \
+    commands \
+    tools \
+    shapes \
+    events \
+    fileio
 DISTFILES += \
     icon.rc
 

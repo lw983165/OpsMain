@@ -19,6 +19,8 @@ private:
     Ui::MainWindow *ui;
 public slots:
     void timerUpdate(void);
+private slots:
+    void on_toolButton_20_clicked();
 };
 
 #endif // MAINWINDOW_H
