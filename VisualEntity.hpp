@@ -3,12 +3,15 @@
 #include "ISelectable.hpp"
 #include "IDrawable.hpp"
 #include "ITransformable.hpp"
+#include "common/PropertySupport.h"
 
 class QPainter;
 class Group;
 class ActiveSelection;
 
-class VisualEntity : public IDrawable, public ISelectable, public ITransformable
+
+
+class VisualEntity : public IDrawable, public ISelectable, public ITransformable, public PropertySupport
 {
 public:
     VisualEntity();
@@ -17,9 +20,14 @@ public:
     void setSelected(bool val) override;
     void toogleSelect() override;
     bool isSelected() override;
-    QString getId() const override;
 
+    /// get visual component id
+    QString getId() const override;
     void setId(const QString& id);
+
+    /// get data-binding id
+    QString getDataId() const;
+    void setDataId(const QString& id);
 
     void setParentGroup(Group *val);
     Group* getParentGroup();

@@ -3,6 +3,7 @@
 #include <math.h>
 #include <QDir>
 #include <JsonFileWriter.hpp>
+#include <QDebug>
 
 #include "jsondef.h"
 
@@ -15,7 +16,7 @@ int judgeKyType(const QJsonObject& src)
     QString type = src["type"].toString();
     if (type.compare("scada-line") == 0)
         return IFileReader::LineT;
-    else if (type.compare("scada-panel") == 0)
+    else if (type.compare("scada-rect") == 0)
         return IFileReader::RectangleT;
     else if (type.compare("scada-circle") == 0)
         return IFileReader::CircleT;
@@ -23,6 +24,16 @@ int judgeKyType(const QJsonObject& src)
         return IFileReader::SvgT;
     else if (type.compare("scada-label") == 0)
         return IFileReader::TextT;
+    else if (type.compare("scada-guage") == 0) {
+        qDebug() << "scada-guage not support!";
+        return IFileReader::NotSupport;
+    } else if (type.compare("scada-levelbar") == 0) {
+        qDebug() << "scada-levelbar not support!";
+        return IFileReader::NotSupport;
+    } else if (type.compare("scada-fan") == 0) {
+        qDebug() << "scada-fan not support!";
+        return IFileReader::NotSupport;
+    }
 
     return IFileReader::Unknown;
 }
@@ -90,14 +101,22 @@ void kyShape2Line(const QJsonObject& src, QJsonObject& line)
     line["P2"] = writePoint(x0 + w, y0 + h);
 }
 
+QPoint offset(QPoint& p, int x, int y)
+{
+	QPoint ret(p);
+	ret.setX(ret.rx() + x);
+	ret.setY(ret.ry() + y);
+	return ret;
+}
+
 void kyShape2Circle(const QJsonObject& src, QJsonObject& circle)
 {
     circle["Type"] = "Circle";
     circle["id"] =  src["id"].toString();
     QPoint pos;
     QSize size;
-    getTopLeftPosition(src["layout"].toObject(), pos, size);
-    circle["Position"] = JsonFileWriter::writePoint(pos);
+	getPositions(src["layout"].toObject(), pos, size);
+	circle["Position"] = JsonFileWriter::writePoint(offset(pos, size.width() / 2, size.height() / 2));
     circle["Radius"] = size.width() / 2;
 
     circle["LineThickness"] = src["params"].toObject()["strokeWidth"].toInt();
@@ -111,7 +130,7 @@ void kyShape2Text(const QJsonObject& src, QJsonObject& txt)
     txt["id"] =  src["id"].toString();
     QPoint pos;
     QSize size;
-    getTopLeftPosition(src["layout"].toObject(), pos, size);
+	getPositions(src["layout"].toObject(), pos, size);
     txt[POSITION] = JsonFileWriter::writePoint(pos);
 	txt[WIDTH] = size.width();
 	txt[HEIGHT] = size.height();

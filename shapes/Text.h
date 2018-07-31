@@ -2,7 +2,7 @@
 #define TEXT_H
 
 #include "Shape.hpp"
-#include "ilabel.h"
+#include "ILabel.h"
 
 class Text : public Shape, public ILabel
 {

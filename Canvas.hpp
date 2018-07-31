@@ -22,6 +22,7 @@ public:
     void setBackgroundColor(QColor val);
     void addVisualEntity(VisualEntity *val);
     void setActiveTool(Tool *val);
+    Tool* getActiveTool() const;
     Group *getMainGroup();
     void setMainGroup(Group *group);
 
@@ -33,5 +34,6 @@ private:
     Group *m_mainGroup;
     ActiveSelection *m_selection;
     Tool *m_activeTool;
+    Tool *valueChangeTool;
 };
 

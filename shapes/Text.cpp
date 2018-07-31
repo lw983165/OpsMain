@@ -12,17 +12,17 @@ Text::Text()
 
 void Text::draw(QPainter *painter)
 {
-
+    // 设置画笔颜色
     painter->setPen(getFillColor());
 
-
+    // 设置字体：微软雅黑、点大小50、斜体
     QFont font;
     font.setFamily(fontFamily);
     font.setPointSize(fontSize);
     painter->setFont(font);
 
     QRect rect(getPosition(), size);
-
+    // 绘制文本
     painter->drawText(rect, Qt::AlignCenter, txt);
 }
 

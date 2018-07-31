@@ -13,7 +13,7 @@ void htShape2Line(const QJsonObject& src, QJsonObject& line)
     line["Type"] = "Line";
     QJsonObject color;
     QString strColor = src["s"].toObject()["shape.border.color"].toString();
-//	const char* p = strColor.toStdString().data();
+	const char* p = strColor.toStdString().data();
 	int r, g, b;
 	bool ok;
 	color["r"] = r = strColor.mid(1, 2).toInt(&ok, 16);
@@ -25,15 +25,15 @@ void htShape2Line(const QJsonObject& src, QJsonObject& line)
     line["P2"] = src["p"].toObject()["points"].toObject()["__a"].toArray()[1].toObject();
 }
 
-//void htShape2Circle(const QJsonObject& src, QJsonObject& circle)
-//{
-//    ;
-//}
+void htShape2Circle(const QJsonObject& src, QJsonObject& circle)
+{
+    ;
+}
 
-//void htShape2Rectangle(const QJsonObject& src, QJsonObject& rec)
-//{
-//    ;
-//}
+void htShape2Rectangle(const QJsonObject& src, QJsonObject& rec)
+{
+    ;
+}
 
 int judgeType(const QJsonObject& src)
 {

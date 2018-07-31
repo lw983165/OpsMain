@@ -4,7 +4,9 @@
 #include "Group.hpp"
 #include "ActiveSelection.hpp"
 #include "SelectionTool.hpp"
-#include "events/eventdef.h"
+#include "events/EventDef.h"
+#include "events/BatchValueChangeEvent.h"
+#include "ValueChangeTool.h"
 
 #include <QPainter>
 #include <QDebug>
@@ -16,6 +18,7 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent)
     m_selection = &ActiveSelection::getInstance();
 
     m_activeTool = nullptr;
+    valueChangeTool = new ValueChangeTool(this);
 
     setBackgroundColor(Qt::white);
 }
@@ -58,6 +61,11 @@ void Canvas::setActiveTool(Tool *val)
     m_activeTool = val;
 }
 
+Tool *Canvas::getActiveTool() const
+{
+    return m_activeTool;
+}
+
 Group *Canvas::getMainGroup()
 {
     return m_mainGroup;
@@ -75,7 +83,7 @@ void Canvas::paintEvent(QPaintEvent *)
     QPainter *painter = new QPainter(this);
 
     m_mainGroup->draw(painter);
-    m_selection->draw(painter);
+    if (m_selection) m_selection->draw(painter);
 
     delete painter;
 }
@@ -87,6 +95,13 @@ bool Canvas::event(QEvent *event)
     if (event->type() == QEvent::Paint) {
         QPaintEvent *ke = reinterpret_cast<QPaintEvent *>(event);
         paintEvent(ke);
+        return true;
+    } else if (event->type() == EV_VALUE_CHANGE) {
+        valueChangeTool->handleEvent(event);
+        repaint();
+        return true;
+    } else if (event->type() == EV_BATCH_VALUE_CHANGE) {
+        valueChangeTool->handleEvent(event);
         return true;
     }
 

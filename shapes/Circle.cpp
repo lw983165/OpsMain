@@ -2,6 +2,8 @@
 #include <QPainter>
 #include <QDebug>
 
+#include <winsock2.h>
+
 Circle::Circle() :
     m_radius(50)
 {
@@ -16,7 +18,7 @@ Circle::~Circle()
 void Circle::draw(QPainter *painter)
 {
 	QColor fill = getFillColor();
-//	int r = fill.red(), g = fill.green(), b = fill.blue();
+	int r = fill.red(), g = fill.green(), b = fill.blue();
     QBrush brush(fill);
     QPen pen(getLineColor());
 
