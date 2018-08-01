@@ -6,7 +6,6 @@
 
 AbstractGroup::AbstractGroup()
 {
-
 }
 
 AbstractGroup::~AbstractGroup()
@@ -135,5 +134,6 @@ void AbstractGroup::sortByIndex()
     std::sort(m_children.begin(), m_children.end(),
               [](VisualEntity *a, VisualEntity *b) {
                   return a->getIndex() < b->getIndex();
-              });
+    });
 }
+

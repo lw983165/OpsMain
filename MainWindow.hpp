@@ -21,6 +21,8 @@ namespace Ui {
 class MainWindow;
 }
 
+
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -45,7 +47,7 @@ public:
 public slots:
     void timerUpdate(void);
 private slots:
-    void on_toolButton_20_triggered();
+    void on_toolButton_20_clicked();
 
 private:
     void uncheckAllToolbar();

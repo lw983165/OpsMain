@@ -17,5 +17,9 @@
         <file>icons/system.png</file>
         <file>icons/Trend.png</file>
         <file>icons/megaphone.png</file>
+        <file>icons/fan_bg.png</file>
+        <file>icons/fan_pointer.png</file>
+        <file>icons/fan_bg.svg</file>
+        <file>icons/fan_pointer.svg</file>
     </qresource>
 </RCC>

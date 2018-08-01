@@ -5,6 +5,8 @@
 #include "ITransformable.hpp"
 #include "common/PropertySupport.h"
 
+#include <QWidget>
+
 class QPainter;
 class Group;
 class ActiveSelection;
@@ -35,12 +37,16 @@ public:
 
     int getIndex() const;
     void setIndex(int value);
+    ///
+    QWidget* binding();
+    void binding(QWidget* widget);
 
 protected:
     Group *m_parentGroup;
     ActiveSelection *m_selection;
     QString id;
 
+    QWidget* mBinding;
     int m_index;
 };
 

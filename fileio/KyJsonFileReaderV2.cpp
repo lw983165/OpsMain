@@ -25,8 +25,7 @@ int judgeKyType(const QJsonObject& src)
     else if (type.compare("scada-label") == 0)
         return IFileReader::TextT;
     else if (type.compare("scada-guage") == 0) {
-        qDebug() << "scada-guage not support!";
-        return IFileReader::NotSupport;
+        return IFileReader::GaugeT;
     } else if (type.compare("scada-levelbar") == 0) {
         qDebug() << "scada-levelbar not support!";
         return IFileReader::NotSupport;
@@ -138,6 +137,23 @@ void kyShape2Text(const QJsonObject& src, QJsonObject& txt)
     txt[TEXT_TEXT] = src["value"].toObject()["val1"].toString();
     txt[TEXT_FONTSIZE] = src["params"].toObject()["fontSize"].toInt();
 	txt[TEXT_FONTFAMILY] = src["params"].toObject()["fontFamily"].toString();
+}
+
+void kyShage2Gauge(const QJsonObject& src, QJsonObject& gauge)
+{
+    qDebug() << "kyShage2Gauge";
+    gauge = src;
+    gauge[TYPE] = "Gauge";
+//    gauge["id"] =  src["id"].toString();
+//    QPoint pos;
+//    QSize size;
+//    getPositions(src["layout"].toObject(), pos, size);
+//    gauge[POSITION] = JsonFileWriter::writePoint(pos);
+//    gauge[WIDTH] = size.width();
+//    gauge[HEIGHT] = size.height();
+//    gauge[GAUGE_VALUE] = src[VALUE].toObject()[GAUGE_VALUE].toString();
+//    gauge[GAUGE_MINVALUE] = src[PARAMS].toObject()[GAUGE_MINVALUE].toInt();
+//    gauge[GAUGE_MAXVALUE] = src["params"].toObject()[GAUGE_MAXVALUE].toString();
 }
 
 void kyShape2Rectangle(const QJsonObject& src, QJsonObject& rec)
@@ -273,6 +289,11 @@ void KyJsonFileReader::translate(const QJsonObject &src, QJsonObject &dest)
             QJsonObject txt;
             kyShape2Text(d[i].toObject(), txt);
             arr.append(txt);
+            break;
+        } case GaugeT: {
+            QJsonObject g;
+            kyShage2Gauge(d[i].toObject(), g);
+            arr.append(g);
             break;
         }
         default:

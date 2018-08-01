@@ -31,6 +31,7 @@
 #include <QDir>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QDebug>
 
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
@@ -42,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_canvas = new Canvas(ui->container);
-    m_canvas->setGeometry(ui->container->geometry());
+    m_canvas->setGeometry(0, 0, ui->container->width(), ui->container->height());
 
     m_selectionTool = std::unique_ptr<SelectionTool>
             (new SelectionTool(m_canvas));
@@ -92,43 +93,45 @@ void MainWindow::timerUpdate(void)
     QString str=time.toString("yyyy-MM-dd hh:mm:ss dddd");
     ui->timelabel->setText(str);
 }
-void MainWindow::on_toolButton_20_triggered()
+void MainWindow::on_toolButton_20_clicked()
 {
-   // if (!promptUnsavedWork()) return;
+    qDebug() << "on_toolButton_20_clicked";
+    // if (!promptUnsavedWork()) return;
 
-    QString fileName=QFileDialog::getOpenFileName(this,tr("Open Canvas"),QDir::currentPath(),tr("Json (*.json);;All File Types (*.*)"));
+     QString fileName=QFileDialog::getOpenFileName(this,tr("Open Canvas"),QDir::currentPath(),tr("Json (*.json);;All File Types (*.*)"));
 
-    if (fileName.isEmpty()) return;
+     if (fileName.isEmpty()) return;
 
-    QString ext = QFileInfo(fileName).suffix();
-    IFileReader *reader = FileReaderFactory::create(ext.toStdString());
+     QString ext = QFileInfo(fileName).suffix();
+     IFileReader *reader = FileReaderFactory::create(ext.toStdString());
 
-    if (reader == nullptr) {
-        QMessageBox::critical(this,"Unsupported file type",QString("I can't read *.%1 files.").arg(ext));
-        return;
-    }
+     if (reader == nullptr) {
+         QMessageBox::critical(this,"Unsupported file type",QString("I can't read *.%1 files.").arg(ext));
+         return;
+     }
 
-    Group *readCanvas = new Group();
-    reader->setup(readCanvas);
-
-
-    bool canRead = reader->read(fileName.toStdString());
-    //delete reader;
-    if (canRead) {
-        m_canvas->setMainGroup(readCanvas);
-        ui->statusBar->showMessage(QString("Opened file: \"%1\"").arg(fileName));
-    } else {
-        delete readCanvas;
-        QMessageBox::critical(this,
-                              "File Read Error",
-                              "I can't read this file ):");
-        return;
-    }
+     Group *readCanvas = new Group();
+     readCanvas->binding(m_canvas);
+     reader->setup(readCanvas);
 
 
-//    setCanvasFile(fileName);
+     bool canRead = reader->read(fileName.toStdString());
+     //delete reader;
+     if (canRead) {
+         m_canvas->setMainGroup(readCanvas);
+         ui->statusBar->showMessage(QString("Opened file: \"%1\"").arg(fileName));
+     } else {
+         delete readCanvas;
+         QMessageBox::critical(this,
+                               "File Read Error",
+                               "I can't read this file ):");
+         return;
+     }
 
-    //resetCommandStack();
 
-    m_canvas->repaint();
+ //    setCanvasFile(fileName);
+
+     //resetCommandStack();
+
+     m_canvas->repaint();
 }

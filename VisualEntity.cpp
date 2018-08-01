@@ -11,7 +11,7 @@ VisualEntity::VisualEntity() :
     m_parentGroup(nullptr)
 {
     m_selection = &ActiveSelection::getInstance();
-
+    mBinding = nullptr;
     m_index = -1;
 }
 
@@ -77,5 +77,13 @@ void VisualEntity::setIndex(int value)
 {
     m_index = value;
 }
+QWidget *VisualEntity::binding()
+{
+    return mBinding;
+}
 
+void VisualEntity::binding(QWidget *widget)
+{
+    mBinding = widget;
+}
 

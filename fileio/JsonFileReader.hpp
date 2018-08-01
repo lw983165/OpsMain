@@ -11,6 +11,7 @@ class Circle;
 class Shape;
 class Line;
 class Text;
+class Gauge;
 
 namespace kylink {
 class Rectangle;
@@ -37,6 +38,7 @@ protected:
     virtual Line *readLine(const QJsonObject &l);
     virtual Svg *readSvg(const QJsonObject &l);
     virtual Text *readText(const QJsonObject &l);
+    virtual Gauge* readGauge(const QJsonObject &l);
     virtual void readShape(Shape *s, const QJsonObject &obj);
 
     Group *m_mainGroup;

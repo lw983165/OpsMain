@@ -105,7 +105,7 @@ bool Canvas::event(QEvent *event)
         return true;
     }
 
-    qDebug() << "Canvas::event ---- " << event->type() ;
+//    qDebug() << "Canvas::event ---- " << event->type() ;
 
     bool result = m_activeTool->handleEvent(event);
 

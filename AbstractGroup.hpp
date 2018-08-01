@@ -4,6 +4,8 @@
 #include "ITransformable.hpp"
 #include <vector>
 
+#include <QWidget>
+
 class VisualEntity;
 
 class AbstractGroup : public IDrawable, public ITransformable
@@ -30,7 +32,9 @@ public:
 
     void sortByIndex();
 
+
 protected:
     void reindexChildren();
     std::vector<VisualEntity*> m_children;
+
 };

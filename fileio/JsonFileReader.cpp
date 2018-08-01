@@ -6,11 +6,13 @@
 #include "Group.hpp"
 #include "svg.h"
 #include "Text.h"
+#include "Gauge.h"
 #include "jsondef.h"
 
 #include <stdexcept>
 #include <QJsonDocument>
 #include <QFile>
+#include <QDebug>
 
 JsonFileReader::JsonFileReader()
 {
@@ -36,14 +38,10 @@ bool JsonFileReader::read(const std::string &fileDir)
     }
 
     QByteArray saveData = loadFile.readAll();
-
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
-
     QJsonObject jsonObj = loadDoc.object();
     QJsonArray canvasShapes = jsonObj["CanvasShapes"].toArray();
-
     readGroup(m_mainGroup, canvasShapes);
-
     return true;
 }
 
@@ -51,20 +49,25 @@ void JsonFileReader::readGroup(Group *group, const QJsonArray &groupObj)
 {
     for (int i = 0; i < groupObj.size(); i++) {
         QJsonObject obj = groupObj[i].toObject();
-
+        VisualEntity * child = nullptr;
         if (obj["Type"].toString() == "Circle") {
-            group->add(readCircle(obj));
+            child = readCircle(obj);
         } else if (obj["Type"].toString() == "Rectangle") {
-            group->add(readRectangle(obj));
+            child = readRectangle(obj);
         } else if (obj["Type"].toString() == "Line") {
-            group->add(readLine(obj));
+            child = readLine(obj);
         } else if (obj["Type"].toString() == "Svg") {
-            group->add(readSvg(obj));
+            child = readSvg(obj);
         } else if (obj["Type"].toString() == "Text") {
-            group->add(readText(obj));
+            child = readText(obj);
+        } else if (obj["Type"].toString() == "Gauge") {
+            child = readGauge(obj);
         } else {
             throw std::runtime_error("Invalid visual entity!");
         }
+
+        child->binding(group->binding());
+        group->add(child);
     }
 }
 
@@ -90,6 +93,20 @@ Text *JsonFileReader::readText(const QJsonObject &c)
     txt->setText(c[TEXT_TEXT].toString());
     txt->setId(c["id"].toString());
     return txt;
+}
+
+Gauge *JsonFileReader::readGauge(const QJsonObject &json)
+{
+    qDebug() << "JsonFileReader::readGauge";
+    Gauge* gauge = new Gauge();
+    gauge->setId(json[ID].toString());
+    QJsonObject layout = json[LAYOUT].toObject();
+    gauge->setPosition(readPoint(layout));
+    gauge->setSize(QSize(layout["width"].toInt(), layout["height"].toInt()));
+    gauge->setMinValue(json[PARAMS].toObject()[GAUGE_MINVALUE].toString().toInt());
+    gauge->setMaxValue(json[PARAMS].toObject()[GAUGE_MAXVALUE].toString().toInt());
+    gauge->setValue(json[VALUE].toObject()[GAUGE_VALUE].toInt());
+    return gauge;
 }
 
 kylink::Rectangle *JsonFileReader::readRectangle(const QJsonObject &r)
