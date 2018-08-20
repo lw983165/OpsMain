@@ -13,12 +13,11 @@ SelectionTool::SelectionTool(Canvas *canvas) :
     m_isMousePressed(false), m_hasMoved(false)
 {
     m_selection = &ActiveSelection::getInstance();
-    m_gp = &GlobalDrawProperties::getInstance();
+	m_gp = nullptr;// &GlobalDrawProperties::getInstance();
 }
 
 SelectionTool::~SelectionTool()
 {
-
 }
 
 void SelectionTool::mousePress(QMouseEvent *event)
@@ -26,8 +25,7 @@ void SelectionTool::mousePress(QMouseEvent *event)
     m_isMousePressed = true;
     m_mousePressedLoc = event->pos();
 
-    VisualEntity *clicked =
-            m_canvas->getVEFromPosition(event->pos().x(), event->pos().y());
+    VisualEntity *clicked = m_canvas->getVEFromPosition(event->pos().x(), event->pos().y());
 
     if (clicked != nullptr
             && m_selection->getSize() <= 1
@@ -68,7 +66,7 @@ void SelectionTool::mouseRelease(QMouseEvent *event)
         }
     } else {
         m_selection->deselectAll();
-        m_gp->unlinkProperties();
+        //m_gp->unlinkProperties();
     }
 
     if (m_hasMoved) {

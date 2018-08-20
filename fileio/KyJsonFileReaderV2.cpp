@@ -27,8 +27,7 @@ int judgeKyType(const QJsonObject& src)
     else if (type.compare("scada-guage") == 0) {
         return IFileReader::GaugeT;
     } else if (type.compare("scada-levelbar") == 0) {
-        qDebug() << "scada-levelbar not support!";
-        return IFileReader::NotSupport;
+        return IFileReader::LevelBarT;
     } else if (type.compare("scada-fan") == 0) {
         qDebug() << "scada-fan not support!";
         return IFileReader::NotSupport;
@@ -154,6 +153,16 @@ void kyShage2Gauge(const QJsonObject& src, QJsonObject& gauge)
 //    gauge[GAUGE_VALUE] = src[VALUE].toObject()[GAUGE_VALUE].toString();
 //    gauge[GAUGE_MINVALUE] = src[PARAMS].toObject()[GAUGE_MINVALUE].toInt();
 //    gauge[GAUGE_MAXVALUE] = src["params"].toObject()[GAUGE_MAXVALUE].toString();
+}
+
+void kyShage2LevelBar(const QJsonObject& src, QJsonObject& bar)
+{
+    qDebug() << "kyShage2LevelBar";
+    bar = src;
+    QJsonObject params = src["params"].toObject();
+    bar[TYPE] = "LevelBar";
+    bar["FillColor"] = readKyColor(params, "fill");
+    bar["BackColor"] = readKyColor(params, "background");
 }
 
 void kyShape2Rectangle(const QJsonObject& src, QJsonObject& rec)
@@ -294,6 +303,11 @@ void KyJsonFileReader::translate(const QJsonObject &src, QJsonObject &dest)
             QJsonObject g;
             kyShage2Gauge(d[i].toObject(), g);
             arr.append(g);
+            break;
+        } case LevelBarT: {
+            QJsonObject bar;
+            kyShage2LevelBar(d[i].toObject(), bar);
+            arr.append(bar);
             break;
         }
         default:

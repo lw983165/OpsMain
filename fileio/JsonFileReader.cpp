@@ -7,6 +7,7 @@
 #include "svg.h"
 #include "Text.h"
 #include "Gauge.h"
+#include "LevelBar.h"
 #include "jsondef.h"
 
 #include <stdexcept>
@@ -62,12 +63,17 @@ void JsonFileReader::readGroup(Group *group, const QJsonArray &groupObj)
             child = readText(obj);
         } else if (obj["Type"].toString() == "Gauge") {
             child = readGauge(obj);
-        } else {
-            throw std::runtime_error("Invalid visual entity!");
+		} else if (obj["Type"].toString() == "LevelBar") {
+			child = readLevelBar(obj);
+		} else {
+            //throw std::runtime_error("Invalid visual entity!");
         }
+		if (child) {
+			child->binding(group->binding());
+			group->add(child);
+		}
 
-        child->binding(group->binding());
-        group->add(child);
+        
     }
 }
 
@@ -102,11 +108,24 @@ Gauge *JsonFileReader::readGauge(const QJsonObject &json)
     gauge->setId(json[ID].toString());
     QJsonObject layout = json[LAYOUT].toObject();
     gauge->setPosition(readPoint(layout));
-    gauge->setSize(QSize(layout["width"].toInt(), layout["height"].toInt()));
+    gauge->setSize(readSize(layout));
     gauge->setMinValue(json[PARAMS].toObject()[GAUGE_MINVALUE].toString().toInt());
     gauge->setMaxValue(json[PARAMS].toObject()[GAUGE_MAXVALUE].toString().toInt());
     gauge->setValue(json[VALUE].toObject()[GAUGE_VALUE].toInt());
     return gauge;
+}
+
+LevelBar *JsonFileReader::readLevelBar(const QJsonObject &json)
+{
+    LevelBar* bar = new LevelBar();
+    bar->setId(json[ID].toString());
+    QJsonObject layout = json[LAYOUT].toObject();
+    bar->setPosition(readPoint(layout));
+    bar->setSize(readSize(layout));
+    bar->setBackColor(readColor(json["BackColor"].toObject()));
+    bar->setFillColor(readColor(json["FillColor"].toObject()));
+    bar->setValue(json["value"].toObject()["val1"].toInt());
+    return bar;
 }
 
 kylink::Rectangle *JsonFileReader::readRectangle(const QJsonObject &r)
@@ -172,5 +191,11 @@ QColor JsonFileReader::readColor(const QJsonObject &c)
                  c["b"].toInt());
 
     return color;
+}
+
+QSize JsonFileReader::readSize(const QJsonObject &c)
+{
+    QSize size(c["width"].toInt(), c["height"].toInt());
+    return size;
 }
 

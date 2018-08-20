@@ -1,0 +1,165 @@
+﻿Build started 2018/8/20 11:12:15.
+     1>Project "Z:\E\02.work\workcopy\OpsMain\MACSui.vcxproj" on node 2 (Rebuild target(s)).
+     1>CustomBuild:
+         Generate moc_predefs.h
+         UIC mainwindow.ui
+         RCC icons.qrc
+         MOC Canvas.hpp
+         MOC DrawDialog.hpp
+         MOC GlobalDrawProperties.hpp
+         MOC MainWindow.hpp
+         MOC widgets/QGauge.h
+         MOC mainwindow.h
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I. /I. /Iinterfaces /Icommands /Itools /Ishapes /Ievents /Ifileio /IC:\golden\api\x64 /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtSvg /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtWidgets /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtGui /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtANGLE /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtNetwork /IC:\Qt\Qt5.10.1\5.10.1\msvc2013_64\include\QtCore /Idebug /I. /I"C:\Qt\Qt5.10.1\5.10.1\msvc2013_64\mkspecs\win32-msvc" /Zi /nologo /W3 /WX- /Od /D _WINDOWS /D UNICODE /D _UNICODE /D WIN32 /D WIN64 /D QT_DEPRECATED_WARNINGS /D QT_SVG_LIB /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_NETWORK_LIB /D QT_CORE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"debug\\" /Fd"debug\vc120.pdb" /Gd /TP /errorReport:prompt -Zc:rvalueCast -Zc:inline -w34100 -w34189 -w44996 AbstractGroup.cpp ActiveSelection.cpp debug\moc_MainWindow.cpp events\BatchValueChangeEvent.cpp BoundaryShape.cpp commands\BringForwardCommand.cpp commands\BringToFrontCommand.cpp commands\BulkOrderCommand.cpp Canvas.cpp commands\ChangeOrderCommand.cpp shapes\Circle.cpp Command.cpp CommandStack.cpp commands\DeleteSelectedCommand.cpp tools\DrawCircleTool.cpp commands\DrawCommand.cpp tools\DrawLineTool.cpp tools\DrawRectangleTool.cpp fileio\FileReaderFactory.cpp fileio\FileWriterFactory.cpp shapes\Gauge.cpp GlobalDrawProperties.cpp dataSource\GoldenDataSource.cpp Group.cpp fileio\HtJsonFileReader.cpp fileio\JsonFileReader.cpp fileio\JsonFileWriter.cpp fileio\KyJsonFileReader.cpp fileio\KyJsonFileReaderV2.cpp shapes\LevelBar.cpp shapes\Line.cpp MainCommandStack.cpp commands\MoveSelectionCommand.cpp PropertyColorButton.cpp PropertySpinBox.cpp common\PropertySupport.cpp widgets\QGauge.cpp shapes\Rectangle.cpp Selection.cpp tools\SelectionTool.cpp commands\SendBackwardCommand.cpp commands\SendToBackCommand.cpp Shape.cpp shapes\Text.cpp Tool.cpp events\ValueChangeEvent.cpp tools\ValueChangeTool.cpp VisualEntity.cpp main.cpp mainwindow.cpp shapes\svg.cpp debug\moc_Canvas.cpp debug\moc_DrawDialog.cpp debug\moc_GlobalDrawProperties.cpp debug\moc_QGauge.cpp debug\qrc_icons.cpp
+         AbstractGroup.cpp
+     1>AbstractGroup.cpp(74): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+     1>AbstractGroup.cpp(128): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+         ActiveSelection.cpp
+         moc_MainWindow.cpp
+         BatchValueChangeEvent.cpp
+     1>events\BatchValueChangeEvent.cpp(18): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+         BoundaryShape.cpp
+         BringForwardCommand.cpp
+         BringToFrontCommand.cpp
+         BulkOrderCommand.cpp
+         Canvas.cpp
+         ChangeOrderCommand.cpp
+         Circle.cpp
+     1>shapes\Circle.cpp(21): warning C4189: 'b' : local variable is initialized but not referenced
+     1>shapes\Circle.cpp(21): warning C4189: 'g' : local variable is initialized but not referenced
+     1>shapes\Circle.cpp(21): warning C4189: 'r' : local variable is initialized but not referenced
+         Command.cpp
+         CommandStack.cpp
+     1>CommandStack.cpp(52): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+         DeleteSelectedCommand.cpp
+         DrawCircleTool.cpp
+         DrawCommand.cpp
+         DrawLineTool.cpp
+         DrawRectangleTool.cpp
+         FileReaderFactory.cpp
+         FileWriterFactory.cpp
+         Generating Code...
+         Compiling...
+         Gauge.cpp
+     1>shapes\Gauge.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         GlobalDrawProperties.cpp
+         GoldenDataSource.cpp
+         Group.cpp
+     1>Group.cpp(25): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>Group.cpp(66): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         HtJsonFileReader.cpp
+     1>fileio\HtJsonFileReader.cpp(16): warning C4189: 'p' : local variable is initialized but not referenced
+     1>fileio\HtJsonFileReader.cpp(28): warning C4100: 'circle' : unreferenced formal parameter
+     1>fileio\HtJsonFileReader.cpp(28): warning C4100: 'src' : unreferenced formal parameter
+     1>fileio\HtJsonFileReader.cpp(33): warning C4100: 'rec' : unreferenced formal parameter
+     1>fileio\HtJsonFileReader.cpp(33): warning C4100: 'src' : unreferenced formal parameter
+         JsonFileReader.cpp
+         JsonFileWriter.cpp
+         KyJsonFileReader.cpp
+     1>fileio\KyJsonFileReader.cpp(165): warning C4305: '=' : truncation from 'int' to 'char'
+     1>fileio\KyJsonFileReader.cpp(165): warning C4309: '=' : truncation of constant value
+     1>fileio\KyJsonFileReader.cpp(172): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+         KyJsonFileReaderV2.cpp
+     1>fileio\KyJsonFileReaderV2.cpp(219): warning C4305: '=' : truncation from 'int' to 'char'
+     1>fileio\KyJsonFileReaderV2.cpp(219): warning C4309: '=' : truncation of constant value
+     1>fileio\KyJsonFileReaderV2.cpp(226): warning C4267: 'argument' : conversion from 'size_t' to 'int', possible loss of data
+         LevelBar.cpp
+         Line.cpp
+         MainCommandStack.cpp
+         MoveSelectionCommand.cpp
+         PropertyColorButton.cpp
+         PropertySpinBox.cpp
+         PropertySupport.cpp
+         QGauge.cpp
+     1>widgets\QGauge.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         Rectangle.cpp
+         Selection.cpp
+         SelectionTool.cpp
+         Generating Code...
+         Compiling...
+         SendBackwardCommand.cpp
+         SendToBackCommand.cpp
+         Shape.cpp
+         Text.cpp
+     1>shapes\Text.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         Tool.cpp
+         ValueChangeEvent.cpp
+         ValueChangeTool.cpp
+     1>tools\ValueChangeTool.cpp(22): warning C4189: 'type' : local variable is initialized but not referenced
+         VisualEntity.cpp
+         main.cpp
+         mainwindow.cpp
+         svg.cpp
+         moc_Canvas.cpp
+         moc_DrawDialog.cpp
+         moc_GlobalDrawProperties.cpp
+         moc_QGauge.cpp
+         qrc_icons.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _WINDOWS /D UNICODE /D _UNICODE /D WIN32 /D WIN64 /D QT_DEPRECATED_WARNINGS /D QT_SVG_LIB /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_NETWORK_LIB /D QT_CORE_LIB /D _DEBUG /l"0x0409" /nologo /fo"debug\icon.res" icon.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"..\build\\MACSui.exe" /NOLOGO /LIBPATH:C:\Qt\Qt5.10.1\5.10.1\msvc2013_64\lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib /LIBPATH:C:\Qt\Qt5.10.1\5.10.1\msvc2013_64\lib /LIBPATH:C:\golden\api\x64 qtmaind.lib shell32.lib C:\golden\api\x64\goldenapi64.lib Qt5Svgd.lib Qt5Widgetsd.lib Qt5Guid.lib Qt5Networkd.lib Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\build\MACSui.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X64 "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" debug\icon.res
+         debug\AbstractGroup.obj
+         debug\ActiveSelection.obj
+         debug\moc_MainWindow.obj
+         debug\BatchValueChangeEvent.obj
+         debug\BoundaryShape.obj
+         debug\BringForwardCommand.obj
+         debug\BringToFrontCommand.obj
+         debug\BulkOrderCommand.obj
+         debug\Canvas.obj
+         debug\ChangeOrderCommand.obj
+         debug\Circle.obj
+         debug\Command.obj
+         debug\CommandStack.obj
+         debug\DeleteSelectedCommand.obj
+         debug\DrawCircleTool.obj
+         debug\DrawCommand.obj
+         debug\DrawLineTool.obj
+         debug\DrawRectangleTool.obj
+         debug\FileReaderFactory.obj
+         debug\FileWriterFactory.obj
+         debug\Gauge.obj
+         debug\GlobalDrawProperties.obj
+         debug\GoldenDataSource.obj
+         debug\Group.obj
+         debug\HtJsonFileReader.obj
+         debug\JsonFileReader.obj
+         debug\JsonFileWriter.obj
+         debug\KyJsonFileReader.obj
+         debug\KyJsonFileReaderV2.obj
+         debug\LevelBar.obj
+         debug\Line.obj
+         debug\MainCommandStack.obj
+         debug\MoveSelectionCommand.obj
+         debug\PropertyColorButton.obj
+         debug\PropertySpinBox.obj
+         debug\PropertySupport.obj
+         debug\QGauge.obj
+         debug\Rectangle.obj
+         debug\Selection.obj
+         debug\SelectionTool.obj
+         debug\SendBackwardCommand.obj
+         debug\SendToBackCommand.obj
+         debug\Shape.obj
+         debug\Text.obj
+         debug\Tool.obj
+         debug\ValueChangeEvent.obj
+         debug\ValueChangeTool.obj
+         debug\VisualEntity.obj
+         debug\main.obj
+         debug\mainwindow.obj
+         debug\svg.obj
+         debug\moc_Canvas.obj
+         debug\moc_DrawDialog.obj
+         debug\moc_GlobalDrawProperties.obj
+         debug\moc_QGauge.obj
+         debug\qrc_icons.obj
+         MACSui.vcxproj -> Z:\E\02.work\workcopy\OpsMain\..\build\MACSui.exe
+     1>Done Building Project "Z:\E\02.work\workcopy\OpsMain\MACSui.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:29.28

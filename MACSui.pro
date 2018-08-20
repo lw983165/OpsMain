@@ -88,7 +88,9 @@ HEADERS += \
     Tool.hpp \
     VisualEntity.hpp \
     widgets/QGauge.h \
-    shapes/Gauge.h
+    shapes/Gauge.h \
+    shapes/LevelBar.h \
+    BoundaryShape.h
 
 SOURCES += \
     commands/BringForwardCommand.cpp \
@@ -138,7 +140,9 @@ SOURCES += \
     Tool.cpp \
     VisualEntity.cpp \
     widgets/QGauge.cpp \
-    shapes/Gauge.cpp
+    shapes/Gauge.cpp \
+    shapes/LevelBar.cpp \
+    BoundaryShape.cpp
 
 
 

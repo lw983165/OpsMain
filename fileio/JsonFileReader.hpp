@@ -12,6 +12,7 @@ class Shape;
 class Line;
 class Text;
 class Gauge;
+class LevelBar;
 
 namespace kylink {
 class Rectangle;
@@ -30,6 +31,7 @@ public:
 
     static QPoint readPoint(const QJsonObject &p);
     static QColor readColor(const QJsonObject &c);
+    static QSize readSize(const QJsonObject &c);
 
 protected:
     virtual void readGroup(Group *group, const QJsonArray &groupObj);
@@ -39,6 +41,7 @@ protected:
     virtual Svg *readSvg(const QJsonObject &l);
     virtual Text *readText(const QJsonObject &l);
     virtual Gauge* readGauge(const QJsonObject &l);
+    virtual LevelBar* readLevelBar(const QJsonObject &l);
     virtual void readShape(Shape *s, const QJsonObject &obj);
 
     Group *m_mainGroup;
